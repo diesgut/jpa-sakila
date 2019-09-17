@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+    <persistence-unit name="sakila_main">
+        <!-- indicamos explicitamente el provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Services Provider Interface (SPI)  -->
+        <!-- Desde java 6, java hace uso de un archivo java configuracion file ubicado, en META-INF/services  -->
+        <!-- en el fichero anterior mencionado se encontrara el tipo de servicio y la clase que se requiere -->
+        <!-- Java puede obtener el provider del fichero antes mencionado, asi que no habria necesidad de declarar dicho elemento -->
+        <!-- Interface Service Provider, es invocada por el contenedor en entornos EE y por el archivo persistence.xml en entornose SE -->
+      
+        <!-- eclpse link requiere que todas las clases decoradas con @Entity, esten mapeadas, para hibernate no es requerido -->
+        <class>com.diesgut.jpa.sakila.model.Language</class>
+        <class>com.diesgut.jpa.sakila.model.Actor</class>
+        <class>com.diesgut.jpa.sakila.model.FilmActor</class>
+        <class>com.diesgut.jpa.sakila.model.Film</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="mysql"/>
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <!-- create crea la bd a partir de nuestro modelo, update actualiza la bd con nuestro modelo -->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- para eclipse link -->
+            <!--            <property name="eclipselink.logging.level" value="FINE" /> para eclipse link-->
+        </properties>
+    </persistence-unit>
+</persistence>
